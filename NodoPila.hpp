@@ -1,12 +1,18 @@
-#ifndef NODOPILA_HPP
-#define NODOPILA_HPP
+#include <iostream>
+#include "Aficionado.hpp"
+using namespace std;
+
 
 class NodoPila
 {
 public:
-	NodoPila();
-	~NodoPila();
+    NodoPila(Aficionado afic, NodoPila* sig = NULL);
+    ~NodoPila();
 
+private:
+    Aficionado valor;
+    NodoPila* siguiente;
+    friend class Pila;
 };
 
-#endif // NODOPILA_HPP
+typedef NodoPila* pnodoPila;
