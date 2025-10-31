@@ -1,20 +1,12 @@
-#include "NodoPila.hpp"
-#include <iostream>
-#include "Aficionado.hpp"
-using namespace std;
+#ifndef PILA_HPP
+#define PILA_HPP
 
 class Pila
 {
 public:
-    Pila();
-    ~Pila();
-    void insertar(Aficionado afic);
-    Aficionado extraer();
-    Aficionado cima();
-    void mostrar();
-    int getLongitud();
+	Pila();
+	~Pila();
 
-private:
-    pnodoPila ultimo;
-    int longitud;
 };
+
+#endif // PILA_HPP

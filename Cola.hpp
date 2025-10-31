@@ -1,20 +1,12 @@
-#include "NodoCola.hpp"
-#include "Aficionado.hpp"
+#ifndef COLA_HPP
+#define COLA_HPP
 
 class Cola
 {
 public:
-    Cola();
-    ~Cola();
-    void insertar(Aficionado afic);
-    Aficionado extraer();
-    Aficionado primero();
-    void mostrar();
-    int getLongitud();
-	bool estaVacia();
+	Cola();
+	~Cola();
 
-private:
-    pnodoCola primeroPtr;
-    pnodoCola ultimo;
-    int longitud;
 };
+
+#endif // COLA_HPP
