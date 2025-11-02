@@ -74,7 +74,7 @@ int main(int argc, char** argv)
 		case 'I':
 			gestor.buscarAficionados();
 			system("pause");
-			system("cls");
+			system("cls"); 
 			break;
 		case 'J':
 			gestor.reiniciar();
@@ -88,6 +88,7 @@ int main(int argc, char** argv)
 		default:
 			cout << "Opcion incorrecta!\n\n";
 			system("pause");
+			system("cls");
 			break;
 		}
 	} while(opcion != 'S');
