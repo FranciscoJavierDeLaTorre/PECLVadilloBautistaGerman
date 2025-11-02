@@ -34,42 +34,52 @@ int main(int argc, char** argv)
 		case 'A':
 			gestor.genera10Aficionados();
 			system("pause");
+			system("cls");
 			break;
 		case 'B':
 			gestor.muestraAficionados();
 			system("pause");
+			system("cls");
 			break;
 		case 'C':
 			gestor.borraAficionadosPila();
 			system("pause");
+			system("cls");
 			break;
 		case 'D':
 			gestor.encolarAficionados();
 			system("pause");
+			system("cls");
 			break;
 		case 'E':
 			gestor.muestraSociosCola();
 			system("pause");
+			system("cls");
 			break;
 		case 'F':
 			gestor.muestraSimpatizantesCola();
 			system("pause");
+			system("cls");
 			break;
 		case 'G':
 			gestor.borraAficionadosColas();
 			system("pause");
+			system("cls");
 			break;
 		case 'H':
 			gestor.enlistarAficionados();
 			system("pause");
+			system("cls");
 			break;
 		case 'I':
 			gestor.buscarAficionados();
 			system("pause");
+			system("cls");
 			break;
 		case 'J':
 			gestor.reiniciar();
 			system("pause");
+			system("cls");
 			break;
 	
 		case 'S':
