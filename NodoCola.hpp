@@ -6,7 +6,7 @@
 class NodoCola
 {
 public:
-    NodoCola(Aficionado afic, NodoCola* sig = nullptr); // 👈 coincide con el .cpp
+    NodoCola(Aficionado afic, NodoCola* sig = nullptr);
     ~NodoCola();
 
 private:
