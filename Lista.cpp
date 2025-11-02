@@ -47,7 +47,6 @@ void Lista::mostrar()
         cout << "\tLa lista está vacía." << endl;
         return;
     }
-    
     cout << "\n\tContenido de la lista de aficionados:" << endl;
     cout << "\t" << string(60, '-') << endl;
     
@@ -59,7 +58,6 @@ void Lista::mostrar()
         aux = aux->siguiente;
         contador++;
     }
-    
     cout << "\t" << string(60, '-') << endl;
     cout << "\tTotal de aficionados en la lista: " << longitud << endl;
 }
