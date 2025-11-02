@@ -6,8 +6,8 @@
 class NodoCola
 {
 public:
-    NodoCola(Aficionado afic, NodoCola* sig = nullptr); 
-    ~NodoCola();
+    NodoCola(Aficionado afic, NodoCola* sig = nullptr);
+    ~NodoCola();
 
 private:
     Aficionado aficionado;
