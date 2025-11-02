@@ -9,8 +9,7 @@ int main(int argc, char** argv)
 
 	do {
 
-		cout << "\tA. Generar 10 Aficionados de forma aleatoria y almacenarlos en la "
-				"Pila.\n";
+		cout << "\tA. Generar 10 Aficionados de forma aleatoria y almacenarlos en la Pila.\n";
 		cout << "\tB. Consultar todos los Aficionados generados en la Pila.\n";
 		cout << "\tC. Borrar los Aficionados generados en la pila.\n";
 		cout << "\tD. Simular llegada de los Aficionados en las colas.\n";
