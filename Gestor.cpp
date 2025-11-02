@@ -46,11 +46,7 @@ int Gestor::AficionadosEnLista()
 	return listaAficionados->getLongitud();
 }
 
-int Gestor::AficionadosEnArbol()
-{
-	// TODO: Implementar en la Parte 2
-	return 0;
-}
+
 
 // OPCIÓN A: Generar 10 aficionados aleatorios y almacenarlos en la pila
 void Gestor::genera10Aficionados()

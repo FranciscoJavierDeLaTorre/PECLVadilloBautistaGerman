@@ -19,7 +19,6 @@ public:
 	int SociosEnCola();
 	int SimpatizantesEnCola();
 	int AficionadosEnLista();
-	int AficionadosEnArbol();
 	
 	// Opción A: Generar 10 aficionados aleatorios
 	void genera10Aficionados();

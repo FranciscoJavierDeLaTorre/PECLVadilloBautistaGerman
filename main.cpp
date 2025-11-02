@@ -9,17 +9,6 @@ int main(int argc, char** argv)
 
 	do {
 
-		cout << "\n\t--------------------------------------------------------------"
-				"--------\n";
-		cout << "\tAficionados en la pila -> " << 0 /*gestor.AficionadosEnPila()*/
-			 << "\n\tAficionados en las colas:\n \t\tSocios-> " << 0 /*gestor.SociosEnCola() */ << "\tSimpatizantes-> "
-			 << 0 /*gestor.SimpatizantesEnCola() */
-			 << " \n\tAficionados en la lista -> " << 0 /*gestor.AficionadosEnLista()*/
-			 << "\n\tAficionados en el arbol -> " << 0							  /*gestor.AficionadosEnArbol()*/
-			 << "\n";
-		cout << "\t----------------------------------------------------------------"
-				"------\n\n";
-
 		cout << "\tA. Generar 10 Aficionados de forma aleatoria y almacenarlos en la "
 				"Pila.\n";
 		cout << "\tB. Consultar todos los Aficionados generados en la Pila.\n";
