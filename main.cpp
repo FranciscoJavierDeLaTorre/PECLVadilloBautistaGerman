@@ -84,30 +84,7 @@ int main(int argc, char** argv)
 			gestor.reiniciar();
 			system("pause");
 			break;
-		case 'K':
-			//...;
-			break;
-		case 'L':
-			//...;
-			break;
-		case 'M':
-			//...;
-			break;
-		case 'N':
-			//...;
-			break;
-		case 'O':
-			//...;
-			break;
-		case 'P':
-			//...;
-			break;
-		case 'Q':
-			//...;
-			break;
-		case 'R':
-			//...;
-			break;
+	
 		case 'S':
 			cout << "Saliendo del programa...\n";
 			break;
