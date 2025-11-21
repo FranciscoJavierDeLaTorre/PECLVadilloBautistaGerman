@@ -94,6 +94,8 @@
   </Settings>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="Source Files">
+      <File Name="NodoArbol.cpp"/>
+      <File Name="Arbol.cpp"/>
       <File Name="Pila.cpp"/>
       <File Name="NodoPila.cpp"/>
       <File Name="NodoLista.cpp"/>
@@ -104,6 +106,8 @@
       <File Name="Aficionado.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Header Files">
+      <File Name="NodoArbol.hpp"/>
+      <File Name="Arbol.hpp"/>
       <File Name="Pila.hpp"/>
       <File Name="NodoPila.hpp"/>
       <File Name="NodoLista.hpp"/>
@@ -115,4 +119,6 @@
     </VirtualDirectory>
     <File Name="main.cpp"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>
