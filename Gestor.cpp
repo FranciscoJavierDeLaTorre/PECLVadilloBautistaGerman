@@ -324,3 +324,4 @@ void Gestor::reiniciar()
 	cout << "\t Programa reiniciado correctamente." << endl;
 	cout << "\t  Todas las estructuras han sido vaciadas." << endl;
 }
+// OPCIÓN K: Crear y dibujar el ABB en consola.

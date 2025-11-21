@@ -2,11 +2,12 @@
 
 Arbol::Arbol() { raiz = nullptr; }
 void Arbol::insertar(Aficionado afic) { raiz = insertar(raiz, afic); } // a la raíz solo se puede acceder de forma privada
+
 pnodoAbb Arbol::insertar(pnodoAbb nodo, Aficionado afic)
 {
     if(!nodo)
         return new NodoArbol(afic);
-    if(afic <= nodo->dato)
+    if(afic.getID() <= nodo->afic.getID())
         nodo->izq = insertar(nodo->izq, afic);
     else
         nodo->der = insertar(nodo->der, afic);
