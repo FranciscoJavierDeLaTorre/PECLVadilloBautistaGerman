@@ -325,3 +325,16 @@ void Gestor::reiniciar()
 	cout << "\t  Todas las estructuras han sido vaciadas." << endl;
 }
 // OPCIÓN K: Crear y dibujar el ABB en consola.
+//volcar la lista en el arbol e imprimirlo
+Gestor::CrearydibujarABB()
+{
+	pnodoLista aux;
+    while(listaAficionados.estaVacia()!)
+    {
+		ABB.insertar1(listaAficionados->getPrimero());
+        aux = primero;
+        primero = primero->siguiente;
+        delete aux;
+    }
+	ABB.dibujar();
+	}

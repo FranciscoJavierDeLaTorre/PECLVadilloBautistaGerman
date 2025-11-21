@@ -6,15 +6,15 @@
 ProjectName            :=PECLVadilloBautistaGerman
 ConfigurationName      :=Debug
 WorkspaceConfiguration :=Debug
-WorkspacePath          :="C:/Estructura de Datos"
+WorkspacePath          :=C:/Workspace/Workspace
 ProjectPath            :="C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman"
-IntermediateDirectory  :=../../build-$(WorkspaceConfiguration)/GitHub/PECLVadilloBautistaGerman
+IntermediateDirectory  :=../../../Workspace/Workspace/build-$(WorkspaceConfiguration)/__/__/Estructura_de_Datos/GitHub/PECLVadilloBautistaGerman
 OutDir                 :=$(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Francisco Javier
-Date                   :=11/2/2025
+Date                   :=11/21/2025
 CodeLitePath           :="C:/Users/Francisco Javier/Downloads/codelite-amd64-17.0.0/codelite"
 MakeDirCommand         :=mkdir
 LinkerName             :=C:/mingw64/mingw32/bin/g++.exe
@@ -29,8 +29,8 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputDirectory        :=C:/Estructura de Datos/build-$(WorkspaceConfiguration)/bin
-OutputFile             :=..\..\build-$(WorkspaceConfiguration)\bin\$(ProjectName).exe
+OutputDirectory        :=C:/Workspace/Workspace/build-$(WorkspaceConfiguration)/bin
+OutputFile             :=..\..\..\Workspace\Workspace\build-$(WorkspaceConfiguration)\bin\$(ProjectName).exe
 Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
@@ -64,7 +64,8 @@ AS       := C:/mingw64/mingw32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Users\Francisco Javier\Downloads\codelite-amd64-17.0.0\codelite
-Objects0=$(IntermediateDirectory)/Aficionado.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pila.cpp$(ObjectSuffix) $(IntermediateDirectory)/Cola.cpp$(ObjectSuffix) $(IntermediateDirectory)/Lista.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoCola.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoLista.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/Arbol.cpp$(ObjectSuffix) $(IntermediateDirectory)/Aficionado.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pila.cpp$(ObjectSuffix) $(IntermediateDirectory)/Cola.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoCola.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoLista.cpp$(ObjectSuffix) $(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix) $(IntermediateDirectory)/Lista.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/NodoArbol.cpp$(ObjectSuffix) 
 
 
 
@@ -95,6 +96,11 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/Arbol.cpp$(ObjectSuffix): Arbol.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/Arbol.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Arbol.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Arbol.cpp$(PreprocessSuffix): Arbol.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Arbol.cpp$(PreprocessSuffix) Arbol.cpp
+
 $(IntermediateDirectory)/Aficionado.cpp$(ObjectSuffix): Aficionado.cpp 
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/Aficionado.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Aficionado.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Aficionado.cpp$(PreprocessSuffix): Aficionado.cpp
@@ -110,25 +116,20 @@ $(IntermediateDirectory)/Cola.cpp$(ObjectSuffix): Cola.cpp
 $(IntermediateDirectory)/Cola.cpp$(PreprocessSuffix): Cola.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Cola.cpp$(PreprocessSuffix) Cola.cpp
 
-$(IntermediateDirectory)/Lista.cpp$(ObjectSuffix): Lista.cpp 
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/Lista.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lista.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Lista.cpp$(PreprocessSuffix): Lista.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Lista.cpp$(PreprocessSuffix) Lista.cpp
-
 $(IntermediateDirectory)/NodoCola.cpp$(ObjectSuffix): NodoCola.cpp 
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/NodoCola.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoCola.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/NodoCola.cpp$(PreprocessSuffix): NodoCola.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoCola.cpp$(PreprocessSuffix) NodoCola.cpp
 
-$(IntermediateDirectory)/NodoLista.cpp$(ObjectSuffix): NodoLista.cpp 
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/NodoLista.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoLista.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/NodoLista.cpp$(PreprocessSuffix): NodoLista.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoLista.cpp$(PreprocessSuffix) NodoLista.cpp
-
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp 
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
+
+$(IntermediateDirectory)/NodoLista.cpp$(ObjectSuffix): NodoLista.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/NodoLista.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoLista.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/NodoLista.cpp$(PreprocessSuffix): NodoLista.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoLista.cpp$(PreprocessSuffix) NodoLista.cpp
 
 $(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix): Gestor.cpp 
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/Gestor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix) $(IncludePath)
@@ -139,6 +140,16 @@ $(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix): NodoPila.cpp
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/NodoPila.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/NodoPila.cpp$(PreprocessSuffix): NodoPila.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoPila.cpp$(PreprocessSuffix) NodoPila.cpp
+
+$(IntermediateDirectory)/Lista.cpp$(ObjectSuffix): Lista.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/Lista.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lista.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Lista.cpp$(PreprocessSuffix): Lista.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Lista.cpp$(PreprocessSuffix) Lista.cpp
+
+$(IntermediateDirectory)/NodoArbol.cpp$(ObjectSuffix): NodoArbol.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Estructura de Datos/GitHub/PECLVadilloBautistaGerman/NodoArbol.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoArbol.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/NodoArbol.cpp$(PreprocessSuffix): NodoArbol.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoArbol.cpp$(PreprocessSuffix) NodoArbol.cpp
 
 ##
 ## Clean

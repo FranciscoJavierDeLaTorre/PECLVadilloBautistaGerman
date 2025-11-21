@@ -49,6 +49,8 @@ public:
 	
 	// Opción J: Reiniciar el programa
 	void reiniciar();
+	// Opción K: Crear y dibujar ABB
+	void CrearydibujarABB();
 
 private:
 	Pila* pilaAficionados;

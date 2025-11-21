@@ -1,5 +1,5 @@
 #include "Arbol.hpp"
-
+#include "Aficionado.hpp"
 Arbol::Arbol() { raiz = nullptr; }
 void Arbol::insertar(Aficionado afic) { raiz = insertar(raiz, afic); } // a la raíz solo se puede acceder de forma privada
 
@@ -8,6 +8,16 @@ pnodoAbb Arbol::insertar(pnodoAbb nodo, Aficionado afic)
     if(!nodo)
         return new NodoArbol(afic);
     if(afic.getID() <= nodo->afic.getID())
+        nodo->izq = insertar(nodo->izq, afic);
+    else
+        nodo->der = insertar(nodo->der, afic);
+    return nodo;
+}
+pnodoAbb Arbol::insertar1(pnodoAbb nodo, Aficionado afic)
+{
+    if(!nodo)
+        return new NodoArbol(afic);
+    if(afic.esSocio())
         nodo->izq = insertar(nodo->izq, afic);
     else
         nodo->der = insertar(nodo->der, afic);
@@ -23,7 +33,7 @@ void Arbol::pintar(pnodoAbb nodo)
     if(!nodo)
         return;
     pintar(nodo->izq);
-    cout << nodo->dato << " ";
+    cout << nodo->afic.getID() << " ";
     pintar(nodo->der);
 }
 int Arbol::altura(pnodoAbb nodo)
@@ -119,4 +129,4 @@ void Arbol::dibujar()
     cout << '\n' << '\n';
 }
 
-Arbol::~Arbol() {}
+Arbol::~Arbol() {} 

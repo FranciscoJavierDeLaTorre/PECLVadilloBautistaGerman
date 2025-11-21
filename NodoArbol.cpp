@@ -1,5 +1,5 @@
 #include "NodoArbol.hpp"
-
+#include "Aficionado.hpp"
 NodoArbol::NodoArbol(Aficionado afic)
 {
     this->afic = afic;

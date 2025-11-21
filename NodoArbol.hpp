@@ -1,6 +1,7 @@
 #ifndef NODOARBOL_HPP
 #define NODOARBOL_HPP
 #include <iostream>
+#include "Aficionado.hpp"
 class NodoArbol
 {
 public:

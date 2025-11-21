@@ -21,6 +21,7 @@ int main(int argc, char** argv)
 				"el ultimo socio, el primer simpatizante y "
 				"el ultimo Aficionado que acceden al estadio.\n";
 		cout << "\tJ. Reiniciar el programa.\n";
+		cout << "\tK. Crear y dibujar el ABB en consola.\n";
 		cout << "\tS. Salir.\n\n";
 
 		cout << "\tIndique la opcion deseada: ";
@@ -78,6 +79,11 @@ int main(int argc, char** argv)
 			break;
 		case 'J':
 			gestor.reiniciar();
+			system("pause");
+			system("cls");
+			break;
+		case 'K':
+			gestor.CrearydibujarABB();
 			system("pause");
 			system("cls");
 			break;
