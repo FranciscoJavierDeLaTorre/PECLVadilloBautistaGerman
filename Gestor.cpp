@@ -326,10 +326,10 @@ void Gestor::reiniciar()
 }
 // OPCIÓN K: Crear y dibujar el ABB en consola.
 //volcar la lista en el arbol e imprimirlo
-Gestor::CrearydibujarABB()
+void Gestor::CrearydibujarABB()
 {
 	pnodoLista aux;
-    while(listaAficionados.estaVacia()!)
+    while(listaAficionados->!estaVacia())
     {
 		ABB.insertar1(listaAficionados->getPrimero());
         aux = primero;

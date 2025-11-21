@@ -11,6 +11,7 @@ class Arbol
 public:
     Arbol();
     void insertar(Aficionado afic);
+	void insertar1(Aficionado afic);
     void pintar();
     void dibujar();
     ~Arbol();
