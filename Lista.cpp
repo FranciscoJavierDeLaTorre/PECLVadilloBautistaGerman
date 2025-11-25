@@ -152,6 +152,17 @@ Aficionado Lista::getPrimerSimpatizante()
     
     return Aficionado();
 }
+void Lista::eliminarPrimero()
+{
+    if (primero != NULL)
+    {
+        pnodoLista aux = primero;
+        primero = primero->siguiente;
+        delete aux;
+        longitud--;
+    }
+}
+
 
 Lista::~Lista()
 {

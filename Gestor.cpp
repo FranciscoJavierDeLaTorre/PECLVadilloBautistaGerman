@@ -253,7 +253,7 @@ void Gestor::enlistarAficionados()
 	}
 	
 	cout << "\t" << string(60, '-') << endl;
-	cout << "\ Aficionados enlistados ordenadamente:" << endl;
+	cout << "\t Aficionados enlistados ordenadamente:" << endl;
 	cout << "\t  - Socios: " << sociosEnlistados << endl;
 	cout << "\t  - Simpatizantes: " << simpatizantesEnlistados << endl;
 	cout << "\t  - Total: " << (sociosEnlistados + simpatizantesEnlistados) << endl;
@@ -328,13 +328,15 @@ void Gestor::reiniciar()
 //volcar la lista en el arbol e imprimirlo
 void Gestor::CrearydibujarABB()
 {
-	pnodoLista aux;
-    while(listaAficionados->!estaVacia())
+    Arbol ABB;  
+
+    
+    while (!listaAficionados->estaVacia())
     {
-		ABB.insertar1(listaAficionados->getPrimero());
-        aux = primero;
-        primero = primero->siguiente;
-        delete aux;
+        Aficionado afic = listaAficionados->getPrimero();  // obtener valor
+        ABB.insertar1(afic);                               // insertar en ABB
+        listaAficionados->eliminarPrimero();               // eliminar nodo de la lista
     }
-	ABB.dibujar();
-	}
+
+    ABB.dibujar();
+}

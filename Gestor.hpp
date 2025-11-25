@@ -5,6 +5,7 @@
 #include "Cola.hpp"
 #include "Lista.hpp"
 #include "Aficionado.hpp"
+#include "Arbol.hpp"
 #include <cstdlib>
 #include <ctime>
 

@@ -14,7 +14,7 @@ public:
     int getLongitud();
     bool estaVacia();
     void vaciar();
-    
+    void eliminarPrimero();
     // Métodos para buscar aficionados específicos (Opción I)
     Aficionado getPrimero();
     Aficionado getUltimo();

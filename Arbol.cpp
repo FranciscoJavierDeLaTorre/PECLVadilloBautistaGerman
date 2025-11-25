@@ -2,6 +2,7 @@
 #include "Aficionado.hpp"
 Arbol::Arbol() { raiz = nullptr; }
 void Arbol::insertar(Aficionado afic) { raiz = insertar(raiz, afic); } // a la raíz solo se puede acceder de forma privada
+void Arbol::insertar1(Aficionado afic) { raiz = insertar(raiz, afic); }
 
 pnodoAbb Arbol::insertar(pnodoAbb nodo, Aficionado afic)
 {
