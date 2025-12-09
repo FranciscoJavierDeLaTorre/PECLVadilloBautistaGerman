@@ -15,6 +15,7 @@ public:
     void pintar();
     void dibujar();
     ~Arbol();
+	void inOrden();              // método público
 
 private:
     pnodoAbb raiz;
@@ -24,6 +25,7 @@ private:
     int altura(pnodoAbb);
     void dibujarNodo(vector<string>& output, vector<string>& linkAbove, pnodoAbb nodo, int nivel, int minPos,
                      char linkChar);
+	void inOrden(pnodoAbb nodo); // método recursivo privado
 };
 
 #endif // ARBOL_HPP

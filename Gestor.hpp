@@ -52,6 +52,25 @@ public:
 	void reiniciar();
 	// Opción K: Crear y dibujar ABB
 	void CrearydibujarABB();
+	// OPCIÓN L: Mostrar los datos de todos los socios ordenados por sus IDs de menor a mayor
+	void MostrarABBSociosOrdenado();
+	//Opción M: Mostrar los datos de todos los simpatizantes ordenados por sus IDs de menor a mayor (sin
+	//incluir el aficionado almacenado en nodo ficticio).
+
+	//Opción N: Mostrar los datos de todos los aficionados recorriendo el ABB en inorden.
+
+	//Opción O: Buscar en el ABB y mostrar los siguientes 4 aficionados:
+	//- El primer aficionado en acceder al estadio
+	//- El último socio en acceder al estadio.
+	//- El primer simpatizante en acceder al estadio.
+	//- El último aficionado en acceder al estadio.
+
+	//Opción P: Contar el número de aficionados almacenados en el ABB cuyos ID’s son pares.
+
+	//Opción Q: mostrar los aficionados que se encuentran almacenados en un nodo hoja
+
+	//Opción R: Eliminar un aficionado indicado por su ID (que se pide desde consola). Mostrar el árbol antes
+	//y después tras la eliminación de dicho aficionado.
 
 private:
 	Pila* pilaAficionados;

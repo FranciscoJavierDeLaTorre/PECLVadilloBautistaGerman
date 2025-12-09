@@ -162,6 +162,11 @@ void Lista::eliminarPrimero()
         longitud--;
     }
 }
+pnodoLista Lista::getNodoPrimero() const
+{
+    return primero;
+}
+
 
 
 Lista::~Lista()

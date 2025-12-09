@@ -8,6 +8,8 @@ class NodoLista
 public:
     NodoLista(Aficionado afic, NodoLista* sig = NULL);
     ~NodoLista();
+	Aficionado getAficionado() const { return aficionado; }
+    NodoLista* getSiguiente() const { return siguiente; }
 
 private:
     Aficionado aficionado;

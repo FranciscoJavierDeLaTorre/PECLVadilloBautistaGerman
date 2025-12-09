@@ -342,6 +342,33 @@ void Gestor::CrearydibujarABB()
 }
 // OPCIÓN L: Mostrar los datos de todos los socios ordenados por sus IDs de menor a mayor (sin incluir el
 //aficionado almacenado en nodo ficticio)
+void Gestor::MostrarABBSociosOrdenado()
+{
+    if (listaAficionados->estaVacia())
+    {
+        cout << "No hay aficionados en la lista.\n";
+        return;
+    }
+
+    Arbol ABB;   // Árbol para almacenar socios ordenados por ID
+    pnodoLista aux = listaAficionados->getPrimeroNodo();
+
+
+    while (aux != nullptr)
+    {
+        if (aux->getAficionado().esSocio())
+        {
+            ABB.insertar(aux->getAficionado());
+        }
+
+        aux = aux->getSiguiente();
+    }
+
+    cout << "\n--- SOCIOS ORDENADOS POR ID (ABB) ---\n";
+    ABB.inOrden();
+    cout << "\n--------------------------------------\n";
+}
+
 
 //Opción M: Mostrar los datos de todos los simpatizantes ordenados por sus IDs de menor a mayor (sin
 //incluir el aficionado almacenado en nodo ficticio).
@@ -349,7 +376,7 @@ void Gestor::CrearydibujarABB()
 //Opción N: Mostrar los datos de todos los aficionados recorriendo el ABB en inorden.
 
 //Opción O: Buscar en el ABB y mostrar los siguientes 4 aficionados:
-//- El primer aficionado en acceder al estadio.
+//- El primer aficionado en acceder al estadio
 //- El último socio en acceder al estadio.
 //- El primer simpatizante en acceder al estadio.
 //- El último aficionado en acceder al estadio.

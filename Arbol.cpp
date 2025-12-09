@@ -102,7 +102,7 @@ void Arbol::dibujar()
         for(int j = 0; j < linkAbove[i].size(); j++) {
             if(linkAbove[i][j] != ' ') {
                 int size = output[i - 1].size();
-                if(size < j + 1)
+                if(size < (size_t)(j + 1))
                     output[i - 1] += string(j + 1 - size, ' ');
                 int jj = j;
                 if(linkAbove[i][j] == 'L') {
@@ -129,5 +129,20 @@ void Arbol::dibujar()
     }
     cout << '\n' << '\n';
 }
+void Arbol::inOrden()
+{
+    inOrden(raiz);
+}
+void Arbol::inOrden(pnodoAbb nodo)
+{
+    if (!nodo)
+        return;
+
+    inOrden(nodo->izq);            // izq
+    nodo->afic.mostrar();          // raiz
+    inOrden(nodo->der);            // dcha
+}
+
+
 
 Arbol::~Arbol() {} 
