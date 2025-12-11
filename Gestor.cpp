@@ -372,18 +372,190 @@ void Gestor::MostrarABBSociosOrdenado()
 
 //Opción M: Mostrar los datos de todos los simpatizantes ordenados por sus IDs de menor a mayor (sin
 //incluir el aficionado almacenado en nodo ficticio).
+void Arbol::mostrarSimpatizantesOrden()
+{
+    mostrarSimpatizantesOrden(raiz);
+}
+
+void Arbol::mostrarSimpatizantesOrden(pnodoAbb nodo)
+{
+    if (!nodo) return;
+
+    mostrarSimpatizantesOrden(nodo->izq);
+
+    if (!nodo->afic.esSocio())
+        nodo->afic.mostrar();
+
+    mostrarSimpatizantesOrden(nodo->der);
+}
 
 //Opción N: Mostrar los datos de todos los aficionados recorriendo el ABB en inorden.
+void Arbol::inOrden()
+{
+    inOrden(raiz);
+}
+
+void Arbol::inOrden(pnodoAbb nodo)
+{
+    if (!nodo) return;
+    inOrden(nodo->izq);
+    nodo->afic.mostrar();
+    inOrden(nodo->der);
+}
 
 //Opción O: Buscar en el ABB y mostrar los siguientes 4 aficionados:
 //- El primer aficionado en acceder al estadio
 //- El último socio en acceder al estadio.
 //- El primer simpatizante en acceder al estadio.
 //- El último aficionado en acceder al estadio.
+void Arbol::buscarEspeciales(
+        Aficionado &primero,
+        Aficionado &ultimoSocio,
+        Aficionado &primerSimpatizante,
+        Aficionado &ultimo)
+{
+    bool encontradoPrimero = false;
+    bool encontradoUltSoc = false;
+    bool encontradoPrimSimp = false;
+    bool encontradoUlt = false;
+
+    buscarEspeciales(raiz,
+        primero, ultimoSocio, primerSimpatizante, ultimo,
+        encontradoPrimero, encontradoUltSoc, encontradoPrimSimp, encontradoUlt);
+}
+
+void Arbol::buscarEspeciales(
+        pnodoAbb nodo,
+        Aficionado &primero,
+        Aficionado &ultimoSocio,
+        Aficionado &primerSimpatizante,
+        Aficionado &ultimo,
+        bool &okPrimero,
+        bool &okUltSoc,
+        bool &okPrimSimp,
+        bool &okUlt)
+{
+    if (!nodo) return;
+
+    // Recorrer todo el árbol
+    buscarEspeciales(nodo->izq, primero, ultimoSocio, primerSimpatizante, ultimo,
+                     okPrimero, okUltSoc, okPrimSimp, okUlt);
+
+    Aficionado a = nodo->afic;
+
+    if (!okPrimero || a.getHora() < primero.getHora())
+    {
+        primero = a;
+        okPrimero = true;
+    }
+
+    if (a.esSocio())
+    {
+        if (!okUltSoc || a.getHora() > ultimoSocio.getHora())
+        {
+            ultimoSocio = a;
+            okUltSoc = true;
+        }
+    }
+
+    if (!a.esSocio())
+    {
+        if (!okPrimSimp || a.getHora() < primerSimpatizante.getHora())
+        {
+            primerSimpatizante = a;
+            okPrimSimp = true;
+        }
+    }
+
+    if (!okUlt || a.getHora() > ultimo.getHora())
+    {
+        ultimo = a;
+        okUlt = true;
+    }
+
+    buscarEspeciales(nodo->der, primero, ultimoSocio, primerSimpatizante, ultimo,
+                     okPrimero, okUltSoc, okPrimSimp, okUlt);
+}
 
 //Opción P: Contar el número de aficionados almacenados en el ABB cuyos ID’s son pares.
+int Arbol::contarIDPares()
+{
+    return contarIDPares(raiz);
+}
+
+int Arbol::contarIDPares(pnodoAbb nodo)
+{
+    if (!nodo) return 0;
+
+    int cont = 0;
+    if (nodo->afic.getID() % 2 == 0)
+        cont = 1;
+
+    return cont + contarIDPares(nodo->izq) + contarIDPares(nodo->der);
+}
 
 //Opción Q: mostrar los aficionados que se encuentran almacenados en un nodo hoja
+void Arbol::mostrarHojas()
+{
+    mostrarHojas(raiz);
+}
+
+void Arbol::mostrarHojas(pnodoAbb nodo)
+{
+    if (!nodo) return;
+
+    if (!nodo->izq && !nodo->der)
+    {
+        nodo->afic.mostrar();
+        return;
+    }
+
+    mostrarHojas(nodo->izq);
+    mostrarHojas(nodo->der);
+}
 
 //Opción R: Eliminar un aficionado indicado por su ID (que se pide desde consola). Mostrar el árbol antes
 //y después tras la eliminación de dicho aficionado.
+void Arbol::eliminar(int id)
+{
+    raiz = eliminar(raiz, id);
+}
+
+pnodoAbb Arbol::eliminar(pnodoAbb nodo, int id)
+{
+    if (!nodo) return nullptr;
+
+    if (id < nodo->afic.getID())
+        nodo->izq = eliminar(nodo->izq, id);
+
+    else if (id > nodo->afic.getID())
+        nodo->der = eliminar(nodo->der, id);
+
+    else    // encontrado
+    {
+        if (!nodo->izq)
+        {
+            pnodoAbb temp = nodo->der;
+            delete nodo;
+            return temp;
+        }
+        else if (!nodo->der)
+        {
+            pnodoAbb temp = nodo->izq;
+            delete nodo;
+            return temp;
+        }
+        else
+        {
+            pnodoAbb sucesor = nodo->der;
+            while (sucesor->izq)
+                sucesor = sucesor->izq;
+
+            nodo->afic = sucesor->afic;
+
+            nodo->der = eliminar(nodo->der, sucesor->afic.getID());
+        }
+    }
+
+    return nodo;
+}
