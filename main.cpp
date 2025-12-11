@@ -9,22 +9,22 @@ int main(int argc, char** argv)
 
     do {
         cout << "\n\n";
-        cout << "\t╔════════════════════════════════════════════════════════════════╗" << endl;
-        cout << "\t║          SISTEMA DE CONTROL DE ACCESO AL ESTADIO              ║" << endl;
-        cout << "\t╚════════════════════════════════════════════════════════════════╝" << endl;
-        cout << "\n\t--- PARTE 1: GESTIÓN DE PILA, COLAS Y LISTA ---" << endl;
+        cout << "\t|===============================================================|" << endl;
+        cout << "\t|          SISTEMA DE CONTROL DE ACCESO AL ESTADIO              |" << endl;
+        cout << "\t|===============================================================|" << endl;
+        cout << "\n\t--- PARTE 1: GESTION DE PILA, COLAS Y LISTA ---" << endl;
         cout << "\tA. Generar 10 Aficionados aleatorios y almacenarlos en la Pila" << endl;
         cout << "\tB. Consultar todos los Aficionados en la Pila" << endl;
         cout << "\tC. Borrar los Aficionados de la pila" << endl;
-        cout << "\tD. Simular llegada de Aficionados (Pila → Colas)" << endl;
+        cout << "\tD. Simular llegada de Aficionados (Pila a Colas)" << endl;
         cout << "\tE. Consultar la cola de socios" << endl;
         cout << "\tF. Consultar la cola de simpatizantes" << endl;
         cout << "\tG. Borrar todos los Aficionados de las colas" << endl;
-        cout << "\tH. Simular entrada al estadio (Colas → Lista ordenada)" << endl;
+        cout << "\tH. Simular entrada al estadio (Colas a Lista ordenada)" << endl;
         cout << "\tI. Buscar aficionados especiales en la Lista" << endl;
         cout << "\tJ. Reiniciar el programa" << endl;
         
-        cout << "\n\t--- PARTE 2: GESTIÓN DEL ÁRBOL BINARIO ---" << endl;
+        cout << "\n\t--- PARTE 2: GESTION DEL ARBOL BINARIO ---" << endl;
         cout << "\tK. Crear y dibujar el ABB en consola" << endl;
         cout << "\tL. Mostrar Socios ordenados por ID (ABB)" << endl;
         cout << "\tM. Mostrar Simpatizantes ordenados por ID (ABB)" << endl;
@@ -35,8 +35,8 @@ int main(int argc, char** argv)
         cout << "\tR. Eliminar aficionado por ID" << endl;
         
         cout << "\n\tS. Salir" << endl;
-        cout << "\n\t" << string(64, '─') << endl;
-        cout << "\tIndique la opción deseada: ";
+        cout << "\n\t" << string(64, '-') << endl;
+        cout << "\tIndique la opcion deseada: ";
         cin >> opcion;
         opcion = toupper(opcion);
         

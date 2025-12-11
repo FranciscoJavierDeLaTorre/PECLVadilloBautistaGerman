@@ -2,560 +2,461 @@
 #include <iostream>
 #include <cstdlib>
 using namespace std;
+
 Gestor::Gestor()
 {
-	// Inicializar las estructuras de datos
-	pilaAficionados = new Pila();
-	colaSocios = new Cola();
-	colaSimpatizantes = new Cola();
-	listaAficionados = new Lista();
-	
-	// Inicializar el contador para generar IDs
-	contadorGeneracion = 0;
-	
-	// Inicializar semilla para números aleatorios
-	srand(time(NULL));
+    pilaAficionados = new Pila();
+    colaSocios = new Cola();
+    colaSimpatizantes = new Cola();
+    listaAficionados = new Lista();
+    arbolAficionados = new Arbol();
+    
+    contadorGeneracion = 0;
+    
+    srand(time(NULL));
 }
 
 Gestor::~Gestor()
 {
-	// Liberar memoria de las estructuras de datos
-	delete pilaAficionados;
-	delete colaSocios;
-	delete colaSimpatizantes;
-	delete listaAficionados;
+    delete pilaAficionados;
+    delete colaSocios;
+    delete colaSimpatizantes;
+    delete listaAficionados;
+    delete arbolAficionados;
 }
 
 int Gestor::AficionadosEnPila()
 {
-	return pilaAficionados->getLongitud();
+    return pilaAficionados->getLongitud();
 }
 
 int Gestor::SociosEnCola()
 {
-	return colaSocios->getLongitud();
+    return colaSocios->getLongitud();
 }
 
 int Gestor::SimpatizantesEnCola()
 {
-	return colaSimpatizantes->getLongitud();
+    return colaSimpatizantes->getLongitud();
 }
 
 int Gestor::AficionadosEnLista()
 {
-	return listaAficionados->getLongitud();
+    return listaAficionados->getLongitud();
 }
 
-
-
-// OPCIÓN A: Generar 10 aficionados aleatorios y almacenarlos en la pila
+// OPCIÓN A: Generar 10 aficionados aleatorios
 void Gestor::genera10Aficionados()
 {
-	cout << "\n\t=== GENERANDO 10 AFICIONADOS ALEATORIOS ===" << endl;
-	
-	// Calcular el rango de IDs para esta generación
-	int idInicio = contadorGeneracion * 10 + 1;
-	int idFin = idInicio + 9;
-	
-	cout << "\tRango de IDs: " << idInicio << " - " << idFin << endl;
-	cout << "\t" << string(60, '-') << endl;
-	
-	// Generar 10 aficionados
-	for(int i = 0; i < 10; i++)
-	{
-		int id = idInicio + i;
-
-		int hora = rand() % 60;
-		
-		//(el constructor determina si es socio o simpatizante)
-		Aficionado afic(id, hora);
-
-		pilaAficionados->insertar(afic);
-
-		cout << "\t" << (i+1) << ". ";
-		afic.mostrar();
-	
-	}
-	
-	cout << "\t" << string(60, '-') << endl;
-	cout << "\t 10 aficionados generados y almacenados en la pila." << endl;
-	
-	
-	// Incrementar el contador para la próxima generación
-	contadorGeneracion++;
+    cout << "\n\t=== GENERANDO 10 AFICIONADOS ALEATORIOS ===" << endl;
+    
+    int idInicio = contadorGeneracion * 10 + 1;
+    int idFin = idInicio + 9;
+    
+    cout << "\tRango de IDs: " << idInicio << " - " << idFin << endl;
+    cout << "\t" << string(60, '-') << endl;
+    
+    for(int i = 0; i < 10; i++)
+    {
+        int id = idInicio + i;
+        int hora = rand() % 60;
+        
+        Aficionado afic(id, hora);
+        pilaAficionados->insertar(afic);
+        
+        cout << "\t" << (i+1) << ". ";
+        afic.mostrar();
+    }
+    
+    cout << "\t" << string(60, '-') << endl;
+    cout << "\t10 aficionados generados y almacenados en la pila." << endl;
+    
+    contadorGeneracion++;
 }
 
-// OPCIÓN B: Mostrar todos los aficionados almacenados en la pila
+// OPCIÓN B: Mostrar aficionados en la pila
 void Gestor::muestraAficionados()
 {
-	cout << "\n\t=== AFICIONADOS EN LA PILA ===\n" << endl;
-	
-	if(pilaAficionados->getLongitud() == 0)
-	{
-		cout << "\t La pila está vacía. Use la opción A para generar aficionados." << endl;
-		return;
-	}
-	
-	pilaAficionados->mostrar();
+    cout << "\n\t=== AFICIONADOS EN LA PILA ===\n" << endl;
+    
+    if(pilaAficionados->getLongitud() == 0)
+    {
+        cout << "\tLa pila está vacía. Use la opción A para generar aficionados." << endl;
+        return;
+    }
+    
+    pilaAficionados->mostrar();
 }
 
-// OPCIÓN C: Borrar todos los aficionados de la pila
+// OPCIÓN C: Borrar aficionados de la pila
 void Gestor::borraAficionadosPila()
 {
-	cout << "\n\t=== BORRANDO AFICIONADOS DE LA PILA ===" << endl;
-	
-	if(pilaAficionados->getLongitud() == 0)
-	{
-		cout << "\t La pila ya está vacía." << endl;
-		return;
-	}
-	
-	int cantidad = pilaAficionados->getLongitud();
-	
-	// Extraer todos los elementos de la pila
-	while(pilaAficionados->getLongitud() > 0)
-	{
-		pilaAficionados->extraer();
-	}
-	//y si destruyo la pila y hago una nueva k?
-	cout << "\t " << cantidad << " aficionados eliminados de la pila." << endl;
+    cout << "\n\t=== BORRANDO AFICIONADOS DE LA PILA ===" << endl;
+    
+    if(pilaAficionados->getLongitud() == 0)
+    {
+        cout << "\tLa pila ya está vacía." << endl;
+        return;
+    }
+    
+    int cantidad = pilaAficionados->getLongitud();
+    
+    while(pilaAficionados->getLongitud() > 0)
+    {
+        pilaAficionados->extraer();
+    }
+    
+    cout << "\t" << cantidad << " aficionados eliminados de la pila." << endl;
 }
 
-// OPCIÓN D: Encolar aficionados (extraer de pila e insertar en colas)
+// OPCIÓN D: Encolar aficionados
 void Gestor::encolarAficionados()
 {
-	cout << "\n\t=== ENCOLANDO AFICIONADOS ===" << endl;
-	
-	if(pilaAficionados->getLongitud() == 0)
-	{
-		cout << "\t La pila está vacía. No hay aficionados para encolar." << endl;
-		return;
-	}
-	
-	int socios = 0;
-	int simpatizantes = 0;
-	
-	// Extraer todos los aficionados de la pila
-	while(pilaAficionados->getLongitud() > 0)
-	{
-		Aficionado afic = pilaAficionados->extraer();
-		
-		// Insertar en la cola correspondiente según el tipo
-		if(afic.esSocio())
-		{
-			colaSocios->insertar(afic);
-			socios++;
-		}
-		else
-		{
-			colaSimpatizantes->insertar(afic);
-			simpatizantes++;
-		}
-	}
-	
-	cout << "\t" << string(60, '-') << endl;
-	cout << "\t Aficionados encolados:" << endl;
-	cout << "\t  - Socios: " << socios << endl;
-	cout << "\t  - Simpatizantes: " << simpatizantes << endl;
-	cout << "\t  - Total: " << (socios + simpatizantes) << endl;
-}
-
-// OPCIÓN E: Mostrar la cola de socios
-void Gestor::muestraSociosCola()
-{
-	cout << "\n\t=== COLA DE SOCIOS ===" << endl;
-	
-	if(colaSocios->getLongitud() == 0)
-	{
-		cout << "\t La cola de socios está vacía." << endl;
-		return;
-	}
-	
-	colaSocios->mostrar();
-}
-
-// OPCIÓN F: Mostrar la cola de simpatizantes
-void Gestor::muestraSimpatizantesCola()
-{
-	cout << "\n\t=== COLA DE SIMPATIZANTES ===" << endl;
-	
-	if(colaSimpatizantes->getLongitud() == 0)
-	{
-		cout << "\t La cola de simpatizantes está vacía." << endl;
-		return;
-	}
-	
-	colaSimpatizantes->mostrar();
-}
-
-// OPCIÓN G: Borrar todos los aficionados de ambas colas
-void Gestor::borraAficionadosColas()
-{
-	cout << "\n\t=== BORRANDO AFICIONADOS DE LAS COLAS ===" << endl;
-	
-	int sociosEliminados = colaSocios->getLongitud();
-	int simpatizantesEliminados = colaSimpatizantes->getLongitud();
-	
-	if(sociosEliminados == 0 && simpatizantesEliminados == 0)
-	{
-		cout << "\t Ambas colas ya están vacías." << endl;
-		return;
-	}
-	
-	// Vaciar cola de socios
-	while(colaSocios->getLongitud() > 0)
-	{
-		colaSocios->extraer();
-	}
-	
-	// Vaciar cola de simpatizantes
-	while(colaSimpatizantes->getLongitud() > 0)
-	{
-		colaSimpatizantes->extraer();
-	}
-	
-	cout << "\t Aficionados eliminados:" << endl;
-	cout << "\t  - Socios: " << sociosEliminados << endl;
-	cout << "\t  - Simpatizantes: " << simpatizantesEliminados << endl;
-	cout << "\t  - Total: " << (sociosEliminados + simpatizantesEliminados) << endl;
-}
-
-// OPCIÓN H: Enlistar aficionados (extraer de colas e insertar ordenados en lista)
-void Gestor::enlistarAficionados()
-{
-	cout << "\n\t=== ENLISTANDO AFICIONADOS ===" << endl;
-	
-	if(colaSocios->getLongitud() == 0 && colaSimpatizantes->getLongitud() == 0)
-	{
-		cout << "\t Las colas están vacías. No hay aficionados para enlistar." << endl;
-		return;
-	}
-	
-	int sociosEnlistados = 0;
-	int simpatizantesEnlistados = 0;
-	
-	// Primero extraer e insertar todos los SOCIOS (prioridad)
-	cout << "\t Insertando socios ordenados por hora de llegada..." << endl;
-	while(colaSocios->getLongitud() > 0)
-	{
-		Aficionado afic = colaSocios->extraer();
-		listaAficionados->insertarOrdenado(afic);
-		sociosEnlistados++;
-	}
-	
-	// Luego extraer e insertar todos los SIMPATIZANTES (no prioridad)
-	cout << "\t Insertando simpatizantes ordenados por hora de llegada..." << endl;
-	while(colaSimpatizantes->getLongitud() > 0)
-	{
-		Aficionado afic = colaSimpatizantes->extraer();
-		listaAficionados->insertarOrdenado(afic);
-		simpatizantesEnlistados++;
-	}
-	
-	cout << "\t" << string(60, '-') << endl;
-	cout << "\t Aficionados enlistados ordenadamente:" << endl;
-	cout << "\t  - Socios: " << sociosEnlistados << endl;
-	cout << "\t  - Simpatizantes: " << simpatizantesEnlistados << endl;
-	cout << "\t  - Total: " << (sociosEnlistados + simpatizantesEnlistados) << endl;
-}
-
-// OPCIÓN I: Buscar y mostrar aficionados específicos en la lista
-void Gestor::buscarAficionados()
-{
-	cout << "\n\t=== BÚSQUEDA DE AFICIONADOS EN LA LISTA ===" << endl;
-	
-	if(listaAficionados->getLongitud() == 0)
-	{
-		cout << "\t La lista está vacía. No hay aficionados para buscar." << endl;
-		return;
-	}
-	
-	cout << "\t" << string(60, '-') << endl;
-	
-	// 1. Primer aficionado en acceder al estadio
-	Aficionado primero = listaAficionados->getPrimero();
-	cout << "\t1. PRIMER AFICIONADO en acceder:" << endl;
-	cout << "\t   ";
-	primero.mostrar();
-	
-	// 2. Último socio en acceder al estadio
-	Aficionado ultimoSocio = listaAficionados->getUltimoSocio();
-	cout << "\n\t2. ÚLTIMO SOCIO en acceder:" << endl;
-	cout << "\t   ";
-	ultimoSocio.mostrar();
-	
-	// 3. Primer simpatizante en acceder al estadio
-	Aficionado primerSimp = listaAficionados->getPrimerSimpatizante();
-	cout << "\n\t3. PRIMER SIMPATIZANTE en acceder:" << endl;
-	cout << "\t   ";
-	primerSimp.mostrar();
-	
-	// 4. Último aficionado en acceder al estadio
-	Aficionado ultimo = listaAficionados->getUltimo();
-	cout << "\n\t4. ÚLTIMO AFICIONADO en acceder:" << endl;
-	cout << "\t   ";
-	ultimo.mostrar();
-	
-	cout << "\t" << string(60, '-') << endl;
-}
-//hay q mirar lo d q siempre coincidan
-
-
-// OPCIÓN J: Reiniciar el programa a su estado inicial
-void Gestor::reiniciar()
-{
-	cout << "\n\t=== REINICIANDO EL PROGRAMA ===" << endl;
-	
-	// Borrar todas las estructuras
-	borraAficionadosPila();
-	borraAficionadosColas();
-	
-	// Vaciar la lista
-	if(listaAficionados->getLongitud() > 0)
-	{
-		listaAficionados->vaciar();
-		cout << "\t Lista vaciada." << endl;
-	}
-	
-	// Reiniciar el contador de generación
-	contadorGeneracion = 0;
-	
-	cout << "\t" << string(60, '-') << endl;
-	cout << "\t Programa reiniciado correctamente." << endl;
-	cout << "\t  Todas las estructuras han sido vaciadas." << endl;
-}
-// OPCIÓN K: Crear y dibujar el ABB en consola.
-//volcar la lista en el arbol e imprimirlo
-void Gestor::CrearydibujarABB()
-{
-    Arbol ABB;  
-
+    cout << "\n\t=== ENCOLANDO AFICIONADOS ===" << endl;
     
-    while (!listaAficionados->estaVacia())
+    if(pilaAficionados->getLongitud() == 0)
     {
-        Aficionado afic = listaAficionados->getPrimero();  // obtener valor
-        ABB.insertar1(afic);                               // insertar en ABB
-        listaAficionados->eliminarPrimero();               // eliminar nodo de la lista
-    }
-
-    ABB.dibujar();
-}
-// OPCIÓN L: Mostrar los datos de todos los socios ordenados por sus IDs de menor a mayor (sin incluir el
-//aficionado almacenado en nodo ficticio)
-void Gestor::MostrarABBSociosOrdenado()
-{
-    if (listaAficionados->estaVacia())
-    {
-        cout << "No hay aficionados en la lista.\n";
+        cout << "\tLa pila está vacía. No hay aficionados para encolar." << endl;
         return;
     }
-
-    Arbol ABB;   // Árbol para almacenar socios ordenados por ID
-    pnodoLista aux = listaAficionados->getPrimeroNodo();
-
-
-    while (aux != nullptr)
+    
+    int socios = 0;
+    int simpatizantes = 0;
+    
+    while(pilaAficionados->getLongitud() > 0)
     {
-        if (aux->getAficionado().esSocio())
+        Aficionado afic = pilaAficionados->extraer();
+        
+        if(afic.esSocio())
         {
-            ABB.insertar(aux->getAficionado());
-        }
-
-        aux = aux->getSiguiente();
-    }
-
-    cout << "\n--- SOCIOS ORDENADOS POR ID (ABB) ---\n";
-    ABB.inOrden();
-    cout << "\n--------------------------------------\n";
-}
-
-
-//Opción M: Mostrar los datos de todos los simpatizantes ordenados por sus IDs de menor a mayor (sin
-//incluir el aficionado almacenado en nodo ficticio).
-void Arbol::mostrarSimpatizantesOrden()
-{
-    mostrarSimpatizantesOrden(raiz);
-}
-
-void Arbol::mostrarSimpatizantesOrden(pnodoAbb nodo)
-{
-    if (!nodo) return;
-
-    mostrarSimpatizantesOrden(nodo->izq);
-
-    if (!nodo->afic.esSocio())
-        nodo->afic.mostrar();
-
-    mostrarSimpatizantesOrden(nodo->der);
-}
-
-//Opción N: Mostrar los datos de todos los aficionados recorriendo el ABB en inorden.
-void Arbol::inOrden()
-{
-    inOrden(raiz);
-}
-
-void Arbol::inOrden(pnodoAbb nodo)
-{
-    if (!nodo) return;
-    inOrden(nodo->izq);
-    nodo->afic.mostrar();
-    inOrden(nodo->der);
-}
-
-//Opción O: Buscar en el ABB y mostrar los siguientes 4 aficionados:
-//- El primer aficionado en acceder al estadio
-//- El último socio en acceder al estadio.
-//- El primer simpatizante en acceder al estadio.
-//- El último aficionado en acceder al estadio.
-void Arbol::buscarEspeciales(
-        Aficionado &primero,
-        Aficionado &ultimoSocio,
-        Aficionado &primerSimpatizante,
-        Aficionado &ultimo)
-{
-    bool encontradoPrimero = false;
-    bool encontradoUltSoc = false;
-    bool encontradoPrimSimp = false;
-    bool encontradoUlt = false;
-
-    buscarEspeciales(raiz,
-        primero, ultimoSocio, primerSimpatizante, ultimo,
-        encontradoPrimero, encontradoUltSoc, encontradoPrimSimp, encontradoUlt);
-}
-
-void Arbol::buscarEspeciales(
-        pnodoAbb nodo,
-        Aficionado &primero,
-        Aficionado &ultimoSocio,
-        Aficionado &primerSimpatizante,
-        Aficionado &ultimo,
-        bool &okPrimero,
-        bool &okUltSoc,
-        bool &okPrimSimp,
-        bool &okUlt)
-{
-    if (!nodo) return;
-
-    // Recorrer todo el árbol
-    buscarEspeciales(nodo->izq, primero, ultimoSocio, primerSimpatizante, ultimo,
-                     okPrimero, okUltSoc, okPrimSimp, okUlt);
-
-    Aficionado a = nodo->afic;
-
-    if (!okPrimero || a.getHora() < primero.getHora())
-    {
-        primero = a;
-        okPrimero = true;
-    }
-
-    if (a.esSocio())
-    {
-        if (!okUltSoc || a.getHora() > ultimoSocio.getHora())
-        {
-            ultimoSocio = a;
-            okUltSoc = true;
-        }
-    }
-
-    if (!a.esSocio())
-    {
-        if (!okPrimSimp || a.getHora() < primerSimpatizante.getHora())
-        {
-            primerSimpatizante = a;
-            okPrimSimp = true;
-        }
-    }
-
-    if (!okUlt || a.getHora() > ultimo.getHora())
-    {
-        ultimo = a;
-        okUlt = true;
-    }
-
-    buscarEspeciales(nodo->der, primero, ultimoSocio, primerSimpatizante, ultimo,
-                     okPrimero, okUltSoc, okPrimSimp, okUlt);
-}
-
-//Opción P: Contar el número de aficionados almacenados en el ABB cuyos ID’s son pares.
-int Arbol::contarIDPares()
-{
-    return contarIDPares(raiz);
-}
-
-int Arbol::contarIDPares(pnodoAbb nodo)
-{
-    if (!nodo) return 0;
-
-    int cont = 0;
-    if (nodo->afic.getID() % 2 == 0)
-        cont = 1;
-
-    return cont + contarIDPares(nodo->izq) + contarIDPares(nodo->der);
-}
-
-//Opción Q: mostrar los aficionados que se encuentran almacenados en un nodo hoja
-void Arbol::mostrarHojas()
-{
-    mostrarHojas(raiz);
-}
-
-void Arbol::mostrarHojas(pnodoAbb nodo)
-{
-    if (!nodo) return;
-
-    if (!nodo->izq && !nodo->der)
-    {
-        nodo->afic.mostrar();
-        return;
-    }
-
-    mostrarHojas(nodo->izq);
-    mostrarHojas(nodo->der);
-}
-
-//Opción R: Eliminar un aficionado indicado por su ID (que se pide desde consola). Mostrar el árbol antes
-//y después tras la eliminación de dicho aficionado.
-void Arbol::eliminar(int id)
-{
-    raiz = eliminar(raiz, id);
-}
-
-pnodoAbb Arbol::eliminar(pnodoAbb nodo, int id)
-{
-    if (!nodo) return nullptr;
-
-    if (id < nodo->afic.getID())
-        nodo->izq = eliminar(nodo->izq, id);
-
-    else if (id > nodo->afic.getID())
-        nodo->der = eliminar(nodo->der, id);
-
-    else    // encontrado
-    {
-        if (!nodo->izq)
-        {
-            pnodoAbb temp = nodo->der;
-            delete nodo;
-            return temp;
-        }
-        else if (!nodo->der)
-        {
-            pnodoAbb temp = nodo->izq;
-            delete nodo;
-            return temp;
+            colaSocios->insertar(afic);
+            socios++;
         }
         else
         {
-            pnodoAbb sucesor = nodo->der;
-            while (sucesor->izq)
-                sucesor = sucesor->izq;
-
-            nodo->afic = sucesor->afic;
-
-            nodo->der = eliminar(nodo->der, sucesor->afic.getID());
+            colaSimpatizantes->insertar(afic);
+            simpatizantes++;
         }
     }
+    
+    cout << "\t" << string(60, '-') << endl;
+    cout << "\tAficionados encolados:" << endl;
+    cout << "\t  - Socios: " << socios << endl;
+    cout << "\t  - Simpatizantes: " << simpatizantes << endl;
+    cout << "\t  - Total: " << (socios + simpatizantes) << endl;
+}
 
-    return nodo;
+// OPCIÓN E: Mostrar cola de socios
+void Gestor::muestraSociosCola()
+{
+    cout << "\n\t=== COLA DE SOCIOS ===" << endl;
+    
+    if(colaSocios->getLongitud() == 0)
+    {
+        cout << "\tLa cola de socios está vacía." << endl;
+        return;
+    }
+    
+    colaSocios->mostrar();
+}
+
+// OPCIÓN F: Mostrar cola de simpatizantes
+void Gestor::muestraSimpatizantesCola()
+{
+    cout << "\n\t=== COLA DE SIMPATIZANTES ===" << endl;
+    
+    if(colaSimpatizantes->getLongitud() == 0)
+    {
+        cout << "\tLa cola de simpatizantes está vacía." << endl;
+        return;
+    }
+    
+    colaSimpatizantes->mostrar();
+}
+
+// OPCIÓN G: Borrar aficionados de las colas
+void Gestor::borraAficionadosColas()
+{
+    cout << "\n\t=== BORRANDO AFICIONADOS DE LAS COLAS ===" << endl;
+    
+    int sociosEliminados = colaSocios->getLongitud();
+    int simpatizantesEliminados = colaSimpatizantes->getLongitud();
+    
+    if(sociosEliminados == 0 && simpatizantesEliminados == 0)
+    {
+        cout << "\tAmbas colas ya están vacías." << endl;
+        return;
+    }
+    
+    while(colaSocios->getLongitud() > 0)
+    {
+        colaSocios->extraer();
+    }
+    
+    while(colaSimpatizantes->getLongitud() > 0)
+    {
+        colaSimpatizantes->extraer();
+    }
+    
+    cout << "\tAficionados eliminados:" << endl;
+    cout << "\t  - Socios: " << sociosEliminados << endl;
+    cout << "\t  - Simpatizantes: " << simpatizantesEliminados << endl;
+    cout << "\t  - Total: " << (sociosEliminados + simpatizantesEliminados) << endl;
+}
+
+// OPCIÓN H: Enlistar aficionados ordenadamente
+void Gestor::enlistarAficionados()
+{
+    cout << "\n\t=== ENLISTANDO AFICIONADOS ===" << endl;
+    
+    if(colaSocios->getLongitud() == 0 && colaSimpatizantes->getLongitud() == 0)
+    {
+        cout << "\tLas colas están vacías. No hay aficionados para enlistar." << endl;
+        return;
+    }
+    
+    int sociosEnlistados = 0;
+    int simpatizantesEnlistados = 0;
+    
+    cout << "\tInsertando socios ordenados por hora de llegada..." << endl;
+    while(colaSocios->getLongitud() > 0)
+    {
+        Aficionado afic = colaSocios->extraer();
+        listaAficionados->insertarOrdenado(afic);
+        sociosEnlistados++;
+    }
+    
+    cout << "\tInsertando simpatizantes ordenados por hora de llegada..." << endl;
+    while(colaSimpatizantes->getLongitud() > 0)
+    {
+        Aficionado afic = colaSimpatizantes->extraer();
+        listaAficionados->insertarOrdenado(afic);
+        simpatizantesEnlistados++;
+    }
+    
+    cout << "\t" << string(60, '-') << endl;
+    cout << "\tAficionados enlistados ordenadamente:" << endl;
+    cout << "\t  - Socios: " << sociosEnlistados << endl;
+    cout << "\t  - Simpatizantes: " << simpatizantesEnlistados << endl;
+    cout << "\t  - Total: " << (sociosEnlistados + simpatizantesEnlistados) << endl;
+}
+
+// OPCIÓN I: Buscar aficionados en la lista
+void Gestor::buscarAficionados()
+{
+    cout << "\n\t=== BÚSQUEDA DE AFICIONADOS EN LA LISTA ===" << endl;
+    
+    if(listaAficionados->getLongitud() == 0)
+    {
+        cout << "\tLa lista está vacía. No hay aficionados para buscar." << endl;
+        return;
+    }
+    
+    cout << "\t" << string(60, '-') << endl;
+    
+    Aficionado primero = listaAficionados->getPrimero();
+    cout << "\t1. PRIMER AFICIONADO en acceder:" << endl;
+    cout << "\t   ";
+    primero.mostrar();
+    
+    Aficionado ultimoSocio = listaAficionados->getUltimoSocio();
+    cout << "\n\t2. ÚLTIMO SOCIO en acceder:" << endl;
+    cout << "\t   ";
+    ultimoSocio.mostrar();
+    
+    Aficionado primerSimp = listaAficionados->getPrimerSimpatizante();
+    cout << "\n\t3. PRIMER SIMPATIZANTE en acceder:" << endl;
+    cout << "\t   ";
+    primerSimp.mostrar();
+    
+    Aficionado ultimo = listaAficionados->getUltimo();
+    cout << "\n\t4. ÚLTIMO AFICIONADO en acceder:" << endl;
+    cout << "\t   ";
+    ultimo.mostrar();
+    
+    cout << "\t" << string(60, '-') << endl;
+}
+
+// OPCIÓN J: Reiniciar el programa
+void Gestor::reiniciar()
+{
+    cout << "\n\t=== REINICIANDO EL PROGRAMA ===" << endl;
+    
+    borraAficionadosPila();
+    borraAficionadosColas();
+    
+    if(listaAficionados->getLongitud() > 0)
+    {
+        listaAficionados->vaciar();
+        cout << "\tLista vaciada." << endl;
+    }
+    
+    delete arbolAficionados;
+    arbolAficionados = new Arbol();
+    cout << "\tÁrbol reiniciado." << endl;
+    
+    contadorGeneracion = 0;
+    
+    cout << "\t" << string(60, '-') << endl;
+    cout << "\tPrograma reiniciado correctamente." << endl;
+}
+
+// OPCIÓN K: Crear y dibujar ABB
+void Gestor::crearYdibujarABB()
+{
+    cout << "\n\t=== CREANDO Y DIBUJANDO EL ABB ===" << endl;
+    
+    if(listaAficionados->getLongitud() == 0)
+    {
+        cout << "\tLa lista está vacía. No hay aficionados para crear el árbol." << endl;
+        cout << "\tPrimero debe: A -> D -> H para tener aficionados en la lista." << endl;
+        return;
+    }
+    
+    // Crear un nuevo árbol
+    delete arbolAficionados;
+    arbolAficionados = new Arbol();
+    
+    // Crear el nodo raíz ficticio (socio con ID=0)
+    Aficionado raizFicticia;
+    raizFicticia.setID(0);
+    raizFicticia.setHora_llegada(0);
+    raizFicticia.setEs_socio(true);
+    arbolAficionados->insertar1(raizFicticia);
+    
+    // Recorrer la lista e insertar en el árbol
+    pnodoLista aux = listaAficionados->getPrimeroNodo();
+    int socios = 0;
+    int simpatizantes = 0;
+    
+    while(aux != nullptr)
+    {
+        Aficionado afic = aux->getAficionado();
+        arbolAficionados->insertar1(afic);
+        
+        if(afic.esSocio())
+            socios++;
+        else
+            simpatizantes++;
+        
+        aux = aux->getSiguiente();
+    }
+    
+    cout << "\t" << string(60, '-') << endl;
+    cout << "\tÁrbol creado con:" << endl;
+    cout << "\t  - Socios: " << socios << endl;
+    cout << "\t  - Simpatizantes: " << simpatizantes << endl;
+    cout << "\t  - Total: " << (socios + simpatizantes) << endl;
+    cout << "\t" << string(60, '-') << endl;
+    
+    arbolAficionados->dibujar();
+}
+
+// OPCIÓN L: Mostrar socios ordenados por ID
+void Gestor::mostrarSociosOrdenadosID()
+{
+    cout << "\n\t=== SOCIOS ORDENADOS POR ID (ABB) ===" << endl;
+    
+    cout << "\t" << string(60, '-') << endl;
+    arbolAficionados->mostrarSociosOrden();
+    cout << "\t" << string(60, '-') << endl;
+}
+
+// OPCIÓN M: Mostrar simpatizantes ordenados por ID
+void Gestor::mostrarSimpatizantesOrdenadosID()
+{
+    cout << "\n\t=== SIMPATIZANTES ORDENADOS POR ID (ABB) ===" << endl;
+    
+    cout << "\t" << string(60, '-') << endl;
+    arbolAficionados->mostrarSimpatizantesOrden();
+    cout << "\t" << string(60, '-') << endl;
+}
+
+// OPCIÓN N: Mostrar todos en inorden
+void Gestor::mostrarInOrden()
+{
+    cout << "\n\t=== AFICIONADOS EN INORDEN (ABB) ===" << endl;
+    
+    cout << "\t" << string(60, '-') << endl;
+    arbolAficionados->inOrden();
+    cout << "\t" << string(60, '-') << endl;
+}
+
+// OPCIÓN O: Buscar aficionados especiales en el ABB
+void Gestor::buscarAficionadosABB()
+{
+    cout << "\n\t=== BÚSQUEDA DE AFICIONADOS EN EL ABB ===" << endl;
+    
+    Aficionado primero, ultimoSocio, primerSimpatizante, ultimo;
+    
+    arbolAficionados->buscarEspeciales(primero, ultimoSocio, primerSimpatizante, ultimo);
+    
+    cout << "\t" << string(60, '-') << endl;
+    
+    cout << "\t1. PRIMER AFICIONADO en acceder:" << endl;
+    cout << "\t   ";
+    primero.mostrar();
+    
+    cout << "\n\t2. ÚLTIMO SOCIO en acceder:" << endl;
+    cout << "\t   ";
+    ultimoSocio.mostrar();
+    
+    cout << "\n\t3. PRIMER SIMPATIZANTE en acceder:" << endl;
+    cout << "\t   ";
+    primerSimpatizante.mostrar();
+    
+    cout << "\n\t4. ÚLTIMO AFICIONADO en acceder:" << endl;
+    cout << "\t   ";
+    ultimo.mostrar();
+    
+    cout << "\t" << string(60, '-') << endl;
+}
+
+// OPCIÓN P: Contar IDs pares
+void Gestor::contarIDsPares()
+{
+    cout << "\n\t=== CONTANDO AFICIONADOS CON ID PAR ===" << endl;
+    
+    int cantidad = arbolAficionados->contarIDPares();
+    
+    cout << "\t" << string(60, '-') << endl;
+    cout << "\tTotal de aficionados con ID par: " << cantidad << endl;
+    cout << "\t(Nota: Los IDs pares corresponden a socios)" << endl;
+    cout << "\t" << string(60, '-') << endl;
+}
+
+// OPCIÓN Q: Mostrar hojas del ABB
+void Gestor::mostrarHojasABB()
+{
+    cout << "\n\t=== AFICIONADOS EN NODOS HOJA ===" << endl;
+    
+    cout << "\t" << string(60, '-') << endl;
+    arbolAficionados->mostrarHojas();
+    cout << "\t" << string(60, '-') << endl;
+}
+
+// OPCIÓN R: Eliminar aficionado del ABB
+void Gestor::eliminarAficionadoABB()
+{
+    cout << "\n\t=== ELIMINAR AFICIONADO DEL ABB ===" << endl;
+    
+    int id;
+    cout << "\n\tIngrese el ID del aficionado a eliminar: ";
+    cin >> id;
+    
+    if(id == 0)
+    {
+        cout << "\n\tNo se puede eliminar el nodo raíz ficticio." << endl;
+        return;
+    }
+    
+    cout << "\n\t--- ÁRBOL ANTES DE LA ELIMINACIÓN ---" << endl;
+    arbolAficionados->dibujar();
+    
+    arbolAficionados->eliminar(id);
+    
+    cout << "\n\t--- ÁRBOL DESPUÉS DE LA ELIMINACIÓN ---" << endl;
+    arbolAficionados->dibujar();
+    
+    cout << "\tAficionado con ID " << id << " eliminado correctamente." << endl;
 }

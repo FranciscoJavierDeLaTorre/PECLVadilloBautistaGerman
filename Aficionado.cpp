@@ -5,22 +5,22 @@ using namespace std;
 // Constructor base
 Aficionado::Aficionado()
 {
-	this->ID = 0;
-	this->hora_llegada = 0;
-	this->es_socio = false;
+    this->ID = 0;
+    this->hora_llegada = 0;
+    this->es_socio = false;
 }
 
-// Constructor par
+// Constructor parametrizado 
 Aficionado::Aficionado(int ID, int hora_llegada)
 {
-	this->ID = ID;
-	this->hora_llegada = hora_llegada;
-	
-	// Si el ID es par, es socio; si es impar, es simpatizante
-	if(rand() % 2 == 0)
-		this->es_socio = true;
-	else
-		this->es_socio = false;
+    this->ID = ID;
+    this->hora_llegada = hora_llegada;
+    
+    // CORREGIDO: Si el ID es par, es socio; si es impar, es simpatizante
+    if(ID % 2 == 0)
+        this->es_socio = true;
+    else
+        this->es_socio = false;
 }
 
 Aficionado::~Aficionado()
@@ -30,38 +30,38 @@ Aficionado::~Aficionado()
 // Getters
 int Aficionado::getHora()
 {
-	return this->hora_llegada;
+    return this->hora_llegada;
 }
 
 bool Aficionado::esSocio()
 {
-	return this->es_socio;
+    return this->es_socio;
 }
 
 int Aficionado::getID()
 {
-	return this->ID;
+    return this->ID;
 }
 
 // Setters
 void Aficionado::setID(int ID)
 {
-	this->ID = ID;
+    this->ID = ID;
 }
 
 void Aficionado::setHora_llegada(int hora)
 {
-	this->hora_llegada = hora;
+    this->hora_llegada = hora;
 }
 
 void Aficionado::setEs_socio(bool socio)
 {
-	this->es_socio = socio;
+    this->es_socio = socio;
 }
 
 void Aficionado::mostrar()
 {
-	cout << "ID: " << ID 
-	     << " | Hora: 18:" << (hora_llegada < 10 ? "0" : "") << hora_llegada 
-	     << " | Tipo: " << (es_socio ? "Socio" : "Simpatizante") << endl;
+    cout << "ID: " << ID 
+         << " | Hora: 18:" << (hora_llegada < 10 ? "0" : "") << hora_llegada 
+         << " | Tipo: " << (es_socio ? "Socio" : "Simpatizante") << endl;
 }
