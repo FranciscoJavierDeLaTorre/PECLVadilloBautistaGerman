@@ -167,17 +167,13 @@ void Arbol::mostrarSociosOrden()
 {
     mostrarSociosOrden(raiz);
 }
-
 void Arbol::mostrarSociosOrden(pnodoAbb nodo)
 {
     if (!nodo) 
         return;
-
     mostrarSociosOrden(nodo->izq);
-
     if (nodo->afic.esSocio() && nodo->afic.getID() != 0)
         nodo->afic.mostrar();
-
     mostrarSociosOrden(nodo->der);
 }
 
@@ -186,17 +182,13 @@ void Arbol::mostrarSimpatizantesOrden()
 {
     mostrarSimpatizantesOrden(raiz);
 }
-
 void Arbol::mostrarSimpatizantesOrden(pnodoAbb nodo)
 {
     if (!nodo) 
         return;
-
     mostrarSimpatizantesOrden(nodo->izq);
-
     if (!nodo->afic.esSocio())
         nodo->afic.mostrar();
-
     mostrarSimpatizantesOrden(nodo->der);
 }
 
@@ -214,11 +206,9 @@ void Arbol::buscarEspeciales(
     // Inicializar para buscar MÍNIMOS (con HORA MÁXIMA)
     primero = Aficionado(ID_INICIAL, HORA_MAXIMA, false); 
     primerSimpatizante = Aficionado(ID_INICIAL, HORA_MAXIMA, false); 
-
     // Inicializar para buscar MÁXIMOS (con HORA MÍNIMA)
     ultimoSocio = Aficionado(ID_INICIAL, HORA_MINIMA, true);
     ultimo = Aficionado(ID_INICIAL, HORA_MINIMA, false);
-
     buscarEspecialesRecursivo(raiz, primero, ultimoSocio, primerSimpatizante, ultimo);
 }
 void Arbol::buscarEspecialesRecursivo(
@@ -300,14 +290,12 @@ void Arbol::mostrarHojas(pnodoAbb nodo)
 {
     if (!nodo) 
         return;
-
     // Si es hoja y no es el nodo ficticio
     if (!nodo->izq && !nodo->der && nodo->afic.getID() != 0)
     {
         nodo->afic.mostrar();
         return;
     }
-
     mostrarHojas(nodo->izq);
     mostrarHojas(nodo->der);
 }
@@ -322,7 +310,6 @@ pnodoAbb Arbol::eliminar(pnodoAbb nodo, int id)
 {
     if (!nodo) 
         return nullptr;
-
     if (nodo->afic.getID() == id)
     {
         if (!nodo->izq)
@@ -353,10 +340,8 @@ pnodoAbb Arbol::eliminar(pnodoAbb nodo, int id)
         nodo->izq = eliminar(nodo->izq, id);
         nodo->der = eliminar(nodo->der, id);
     }
-
     return nodo;
 }
-
 
 Arbol::~Arbol()
 {
