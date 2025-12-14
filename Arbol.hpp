@@ -47,16 +47,12 @@ private:
     void mostrarSimpatizantesOrden(pnodoAbb nodo);
     void mostrarSociosOrden(pnodoAbb nodo);
     
-    void buscarEspeciales(
+    void buscarEspecialesRecursivo(
         pnodoAbb nodo,
         Aficionado &primero,
         Aficionado &ultimoSocio,
         Aficionado &primerSimpatizante,
-        Aficionado &ultimo,
-        bool &okPrimero,
-        bool &okUltSoc,
-        bool &okPrimSimp,
-        bool &okUlt);
+        Aficionado &ultimo);
     
     int contarIDPares(pnodoAbb nodo);
     void mostrarHojas(pnodoAbb nodo);

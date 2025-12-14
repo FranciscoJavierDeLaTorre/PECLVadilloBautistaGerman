@@ -207,82 +207,71 @@ void Arbol::buscarEspeciales(
         Aficionado &primerSimpatizante,
         Aficionado &ultimo)
 {
-    bool encontradoPrimero = false;
-    bool encontradoUltSoc = false;
-    bool encontradoPrimSimp = false;
-    bool encontradoUlt = false;
+    const int HORA_MAXIMA = 59;
+    const int HORA_MINIMA = 0;
+    const int ID_INICIAL = -1; 
 
-    buscarEspeciales(raiz,
-        primero, ultimoSocio, primerSimpatizante, ultimo,
-        encontradoPrimero, encontradoUltSoc, encontradoPrimSimp, encontradoUlt);
+    // Inicializar para buscar MÍNIMOS (con HORA MÁXIMA)
+    primero = Aficionado(ID_INICIAL, HORA_MAXIMA, false); 
+    primerSimpatizante = Aficionado(ID_INICIAL, HORA_MAXIMA, false); 
+
+    // Inicializar para buscar MÁXIMOS (con HORA MÍNIMA)
+    ultimoSocio = Aficionado(ID_INICIAL, HORA_MINIMA, true);
+    ultimo = Aficionado(ID_INICIAL, HORA_MINIMA, false);
+
+    buscarEspecialesRecursivo(raiz, primero, ultimoSocio, primerSimpatizante, ultimo);
 }
-
-void Arbol::buscarEspeciales(
-        pnodoAbb nodo,
-        Aficionado &primero,
-        Aficionado &ultimoSocio,
-        Aficionado &primerSimpatizante,
-        Aficionado &ultimo,
-        bool &okPrimero,
-        bool &okUltSoc,
-        bool &okPrimSimp,
-        bool &okUlt)
+void Arbol::buscarEspecialesRecursivo(
+    pnodoAbb nodo,
+    Aficionado &primero,
+    Aficionado &ultimoSocio,
+    Aficionado &primerSimpatizante,
+    Aficionado &ultimo)
 {
     if (!nodo) 
         return;
 
-    // Recorrer subárbol izquierdo
-    buscarEspeciales(nodo->izq, primero, ultimoSocio, primerSimpatizante, ultimo,
-                     okPrimero, okUltSoc, okPrimSimp, okUlt);
+    // Inorden: Recorrer izquierdo
+    buscarEspecialesRecursivo(nodo->izq, primero, ultimoSocio, primerSimpatizante, ultimo);
 
     Aficionado a = nodo->afic;
 
-    // Saltar el nodo ficticio (ID == 0)
-    if(a.getID() == 0) {
-        buscarEspeciales(nodo->der, primero, ultimoSocio, primerSimpatizante, ultimo,
-                         okPrimero, okUltSoc, okPrimSimp, okUlt);
-        return;
-    }
-
-    // Primer aficionado en acceder (menor hora)
-    if (!okPrimero || a.getHora() < primero.getHora())
+    // Saltar nodo ficticio (ID == 0)
+    if(a.getID() != 0) 
     {
-        primero = a;
-        okPrimero = true;
-    }
-
-    // Último socio en acceder (mayor hora entre socios)
-    if (a.esSocio())
-    {
-        if (!okUltSoc || a.getHora() > ultimoSocio.getHora())
+        // Primer aficionado global (menor hora)
+        if (a.getHora() < primero.getHora())
         {
-            ultimoSocio = a;
-            okUltSoc = true;
+            primero = a;
+        }
+
+        if (a.esSocio())
+        {
+            // Último socio (mayor hora entre socios)
+            if (a.getHora() > ultimoSocio.getHora())
+            {
+                ultimoSocio = a;
+            }
+        }
+        else // Simpatizante
+        {
+            // Primer simpatizante (menor hora entre simpatizantes)
+            if (a.getHora() < primerSimpatizante.getHora())
+            {
+                primerSimpatizante = a;
+            }
+        }
+
+        // Último aficionado global (mayor hora)
+        if (a.getHora() > ultimo.getHora())
+        {
+            ultimo = a;
         }
     }
 
-    // Primer simpatizante en acceder (menor hora entre simpatizantes)
-    if (!a.esSocio())
-    {
-        if (!okPrimSimp || a.getHora() < primerSimpatizante.getHora())
-        {
-            primerSimpatizante = a;
-            okPrimSimp = true;
-        }
-    }
-
-    // Último aficionado en acceder (mayor hora)
-    if (!okUlt || a.getHora() > ultimo.getHora())
-    {
-        ultimo = a;
-        okUlt = true;
-    }
-
-    // Recorrer subárbol derecho
-    buscarEspeciales(nodo->der, primero, ultimoSocio, primerSimpatizante, ultimo,
-                     okPrimero, okUltSoc, okPrimSimp, okUlt);
+    // Inorden: Recorrer derecho
+    buscarEspecialesRecursivo(nodo->der, primero, ultimoSocio, primerSimpatizante, ultimo);
 }
-
 // Opción P: Contar IDs pares
 int Arbol::contarIDPares()
 {

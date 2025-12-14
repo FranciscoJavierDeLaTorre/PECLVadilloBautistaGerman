@@ -6,6 +6,7 @@ class Aficionado
 public:
 	Aficionado();
 	Aficionado(int ID, int hora_llegada);
+	Aficionado(int ID, int hora_llegada, bool es_socio);
 	~Aficionado();
 	
 	int getHora();

@@ -22,7 +22,13 @@ Aficionado::Aficionado(int ID, int hora_llegada)
     else
         this->es_socio = false;
 }
-
+// Constructor extra
+Aficionado::Aficionado(int ID, int hora_llegada, bool es_socio)
+{
+    this->ID = ID;
+    this->hora_llegada = hora_llegada;
+    this->es_socio = es_socio;
+}
 Aficionado::~Aficionado()
 {
 }
