@@ -377,5 +377,5 @@ pnodoAbb Arbol::eliminar(pnodoAbb nodo, int id)
 
 Arbol::~Arbol() 
 {
-    // Aquí deberías implementar la liberación de memoria del árbol
+
 }
