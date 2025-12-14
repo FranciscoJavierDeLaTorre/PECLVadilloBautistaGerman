@@ -309,7 +309,6 @@ void Gestor::crearYdibujarABB()
     if(listaAficionados->getLongitud() == 0)
     {
         cout << "\tLa lista está vacía. No hay aficionados para crear el árbol." << endl;
-        cout << "\tPrimero debe: A -> D -> H para tener aficionados en la lista." << endl;
         return;
     }
     
@@ -317,12 +316,12 @@ void Gestor::crearYdibujarABB()
     delete arbolAficionados;
     arbolAficionados = new Arbol();
     
-    // Crear el nodo raíz ficticio (socio con ID=0)
-    Aficionado raizFicticia;
-    raizFicticia.setID(0);
-    raizFicticia.setHora_llegada(0);
-    raizFicticia.setEs_socio(true);
-    arbolAficionados->insertar1(raizFicticia);
+    // Crear el nodo raíz socio ficticio
+    Aficionado Ficticio;
+    Ficticio.setID(0);
+    Ficticio.setHora_llegada(0);
+    Ficticio.setEs_socio(true);
+    arbolAficionados->insertar1(Ficticio);
     
     // Recorrer la lista e insertar en el árbol
     pnodoLista aux = listaAficionados->getPrimeroNodo();
@@ -421,7 +420,6 @@ void Gestor::contarIDsPares()
     
     cout << "\t" << string(60, '-') << endl;
     cout << "\tTotal de aficionados con ID par: " << cantidad << endl;
-    cout << "\t(Nota: Los IDs pares corresponden a socios)" << endl;
     cout << "\t" << string(60, '-') << endl;
 }
 

@@ -61,6 +61,7 @@ private:
     int contarIDPares(pnodoAbb nodo);
     void mostrarHojas(pnodoAbb nodo);
     pnodoAbb eliminar(pnodoAbb nodo, int id);
+	void destruirArbol(pnodoAbb nodo);
 };
 
 #endif // ARBOL_HPP

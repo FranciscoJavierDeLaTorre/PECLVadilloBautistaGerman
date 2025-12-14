@@ -334,48 +334,52 @@ pnodoAbb Arbol::eliminar(pnodoAbb nodo, int id)
     if (!nodo) 
         return nullptr;
 
-    if (id < nodo->afic.getID())
-        nodo->izq = eliminar(nodo->izq, id);
-
-    else if (id > nodo->afic.getID())
-        nodo->der = eliminar(nodo->der, id);
-
-    else // Encontrado
+    if (nodo->afic.getID() == id)
     {
-        // Caso 1: Nodo sin hijo izquierdo
         if (!nodo->izq)
         {
-            pnodoAbb temp = nodo->der;
+            pnodoAbb aux = nodo->der;
             delete nodo;
-            return temp;
+            return aux;
         }
-        // Caso 2: Nodo sin hijo derecho
         else if (!nodo->der)
         {
-            pnodoAbb temp = nodo->izq;
+            pnodoAbb aux = nodo->izq;
             delete nodo;
-            return temp;
+            return aux;
         }
-        // Caso 3: Nodo con dos hijos
-        else
+        else//si tiene hijos derecho e izquierdo
         {
-            // Buscar el sucesor inorden (mínimo del subárbol derecho)
             pnodoAbb sucesor = nodo->der;
-            while (sucesor->izq)
+            while (sucesor->izq){//repite hasta obtener el sucesor
                 sucesor = sucesor->izq;
+			}
+            nodo->afic = sucesor->afic;//cambia al nodo con el que buscaba al sucesor
 
-            // Copiar el valor del sucesor
-            nodo->afic = sucesor->afic;
-
-            // Eliminar el sucesor
-            nodo->der = eliminar(nodo->der, sucesor->afic.getID());
+            nodo->der = eliminar(nodo->der, sucesor->afic.getID());//elimina al sucesor(ahora está duplicado)
         }
+    }
+    else
+    {
+        nodo->izq = eliminar(nodo->izq, id);
+        nodo->der = eliminar(nodo->der, id);
     }
 
     return nodo;
 }
 
-Arbol::~Arbol() 
+
+Arbol::~Arbol()
 {
-    // Aquí deberías implementar la liberación de memoria del árbol
+    destruirArbol(raiz);
+}
+
+void Arbol::destruirArbol(pnodoAbb nodo)
+{
+    if (!nodo)
+        return;
+    
+    destruirArbol(nodo->izq);
+    destruirArbol(nodo->der);
+    delete nodo;
 }

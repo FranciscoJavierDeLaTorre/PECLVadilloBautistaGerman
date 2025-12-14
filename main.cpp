@@ -26,9 +26,9 @@ int main(int argc, char** argv)
         
         cout << "\n\t--- PARTE 2: GESTION DEL ARBOL BINARIO ---" << endl;
         cout << "\tK. Crear y dibujar el ABB en consola" << endl;
-        cout << "\tL. Mostrar Socios ordenados por ID (ABB)" << endl;
-        cout << "\tM. Mostrar Simpatizantes ordenados por ID (ABB)" << endl;
-        cout << "\tN. Mostrar todos los Aficionados en inorden (ABB)" << endl;
+        cout << "\tL. Mostrar Socios ordenados por ID" << endl;
+        cout << "\tM. Mostrar Simpatizantes ordenados por ID" << endl;
+        cout << "\tN. Mostrar todos los Aficionados en inorden" << endl;
         cout << "\tO. Buscar aficionados especiales en el ABB" << endl;
         cout << "\tP. Contar aficionados con ID par" << endl;
         cout << "\tQ. Mostrar aficionados en nodos hoja" << endl;
